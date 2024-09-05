@@ -14,14 +14,14 @@ actor {
 
   type Category = {
     name: Text;
-    icons: [Text];
+    icon: Text;
     items: [Item];
   };
 
   stable var categoriesArray: [Category] = [
     {
       name = "Fruits";
-      icons = ["🍎", "🍌", "🍇", "🍓"];
+      icon = "fa-apple-whole";
       items = [
         { name = "Apple"; icon = "🍎" },
         { name = "Banana"; icon = "🍌" },
@@ -30,16 +30,12 @@ actor {
         { name = "Strawberry"; icon = "🍓" },
         { name = "Pineapple"; icon = "🍍" },
         { name = "Mango"; icon = "🥭" },
-        { name = "Kiwi"; icon = "🥝" },
-        { name = "Watermelon"; icon = "🍉" },
-        { name = "Peach"; icon = "🍑" },
-        { name = "Cherries"; icon = "🍒" },
-        { name = "Pear"; icon = "🍐" }
+        { name = "Kiwi"; icon = "🥝" }
       ];
     },
     {
       name = "Vegetables";
-      icons = ["🥕", "🥦", "🍅", "🥬"];
+      icon = "fa-carrot";
       items = [
         { name = "Carrot"; icon = "🥕" },
         { name = "Broccoli"; icon = "🥦" },
@@ -48,16 +44,12 @@ actor {
         { name = "Lettuce"; icon = "🥬" },
         { name = "Potato"; icon = "🥔" },
         { name = "Onion"; icon = "🧅" },
-        { name = "Bell Pepper"; icon = "🫑" },
-        { name = "Eggplant"; icon = "🍆" },
-        { name = "Corn"; icon = "🌽" },
-        { name = "Mushroom"; icon = "🍄" },
-        { name = "Garlic"; icon = "🧄" }
+        { name = "Bell Pepper"; icon = "🫑" }
       ];
     },
     {
       name = "Dairy";
-      icons = ["🥛", "🧀", "🍦", "🧈"];
+      icon = "fa-cheese";
       items = [
         { name = "Milk"; icon = "🥛" },
         { name = "Cheese"; icon = "🧀" },
@@ -66,16 +58,12 @@ actor {
         { name = "Cream"; icon = "🍶" },
         { name = "Ice Cream"; icon = "🍦" },
         { name = "Sour Cream"; icon = "🥛" },
-        { name = "Cottage Cheese"; icon = "🧀" },
-        { name = "Whipped Cream"; icon = "🍨" },
-        { name = "Milkshake"; icon = "🥤" },
-        { name = "Egg"; icon = "🥚" },
-        { name = "Custard"; icon = "🍮" }
+        { name = "Cottage Cheese"; icon = "🧀" }
       ];
     },
     {
       name = "Bakery";
-      icons = ["🍞", "🥐", "🎂", "🥨"];
+      icon = "fa-bread-slice";
       items = [
         { name = "Bread"; icon = "🍞" },
         { name = "Croissant"; icon = "🥐" },
@@ -84,16 +72,12 @@ actor {
         { name = "Bagel"; icon = "🥯" },
         { name = "Donut"; icon = "🍩" },
         { name = "Pie"; icon = "🥧" },
-        { name = "Cookies"; icon = "🍪" },
-        { name = "Pretzel"; icon = "🥨" },
-        { name = "Pancakes"; icon = "🥞" },
-        { name = "Waffle"; icon = "🧇" },
-        { name = "Baguette"; icon = "🥖" }
+        { name = "Cookies"; icon = "🍪" }
       ];
     },
     {
       name = "Meat";
-      icons = ["🍗", "🥩", "🍖", "🥓"];
+      icon = "fa-drumstick-bite";
       items = [
         { name = "Chicken"; icon = "🍗" },
         { name = "Beef"; icon = "🥩" },
@@ -102,16 +86,12 @@ actor {
         { name = "Turkey"; icon = "🦃" },
         { name = "Lamb"; icon = "🍖" },
         { name = "Sausage"; icon = "🌭" },
-        { name = "Ham"; icon = "🍖" },
-        { name = "Shrimp"; icon = "🍤" },
-        { name = "Crab"; icon = "🦀" },
-        { name = "Lobster"; icon = "🦞" },
-        { name = "Steak"; icon = "🥩" }
+        { name = "Ham"; icon = "🍖" }
       ];
     },
     {
       name = "Beverages";
-      icons = ["🥤", "☕", "🍷", "🧃"];
+      icon = "fa-bottle-water";
       items = [
         { name = "Water"; icon = "💧" },
         { name = "Soda"; icon = "🥤" },
@@ -120,16 +100,12 @@ actor {
         { name = "Juice"; icon = "🧃" },
         { name = "Beer"; icon = "🍺" },
         { name = "Wine"; icon = "🍷" },
-        { name = "Smoothie"; icon = "🥤" },
-        { name = "Cocktail"; icon = "🍸" },
-        { name = "Lemonade"; icon = "🍋" },
-        { name = "Milk Tea"; icon = "🧋" },
-        { name = "Hot Chocolate"; icon = "🍫" }
+        { name = "Smoothie"; icon = "🥤" }
       ];
     },
     {
       name = "Snacks";
-      icons = ["🍿", "🥨", "🍫", "🥜"];
+      icon = "fa-cookie";
       items = [
         { name = "Chips"; icon = "🍟" },
         { name = "Popcorn"; icon = "🍿" },
@@ -138,11 +114,7 @@ actor {
         { name = "Crackers"; icon = "🍘" },
         { name = "Pretzels"; icon = "🥨" },
         { name = "Granola Bar"; icon = "🍫" },
-        { name = "Trail Mix"; icon = "🥜" },
-        { name = "Candy"; icon = "🍬" },
-        { name = "Gummy Bears"; icon = "🐻" },
-        { name = "Ice Cream Bar"; icon = "🍦" },
-        { name = "Rice Cakes"; icon = "🍘" }
+        { name = "Trail Mix"; icon = "🥜" }
       ];
     }
   ];

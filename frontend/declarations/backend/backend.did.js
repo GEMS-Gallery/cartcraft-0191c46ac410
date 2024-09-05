@@ -1,8 +1,8 @@
 export const idlFactory = ({ IDL }) => {
   const Item = IDL.Record({ 'icon' : IDL.Text, 'name' : IDL.Text });
   const Category = IDL.Record({
+    'icon' : IDL.Text,
     'name' : IDL.Text,
-    'icons' : IDL.Vec(IDL.Text),
     'items' : IDL.Vec(Item),
   });
   return IDL.Service({

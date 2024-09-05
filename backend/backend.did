@@ -5,7 +5,7 @@ type Item =
  };
 type Category = 
  record {
-   icons: vec text;
+   icon: text;
    items: vec Item;
    name: text;
  };

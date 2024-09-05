@@ -30,7 +30,14 @@ actor {
         { name = "Strawberry"; icon = "🍓" },
         { name = "Pineapple"; icon = "🍍" },
         { name = "Mango"; icon = "🥭" },
-        { name = "Kiwi"; icon = "🥝" }
+        { name = "Kiwi"; icon = "🥝" },
+        { name = "Watermelon"; icon = "🍉" },
+        { name = "Peach"; icon = "🍑" },
+        { name = "Pear"; icon = "🍐" },
+        { name = "Cherry"; icon = "🍒" },
+        { name = "Blueberry"; icon = "🫐" },
+        { name = "Lemon"; icon = "🍋" },
+        { name = "Avocado"; icon = "🥑" }
       ];
     },
     {
@@ -44,7 +51,14 @@ actor {
         { name = "Lettuce"; icon = "🥬" },
         { name = "Potato"; icon = "🥔" },
         { name = "Onion"; icon = "🧅" },
-        { name = "Bell Pepper"; icon = "🫑" }
+        { name = "Bell Pepper"; icon = "🫑" },
+        { name = "Eggplant"; icon = "🍆" },
+        { name = "Corn"; icon = "🌽" },
+        { name = "Mushroom"; icon = "🍄" },
+        { name = "Garlic"; icon = "🧄" },
+        { name = "Pumpkin"; icon = "🎃" },
+        { name = "Spinach"; icon = "🍃" },
+        { name = "Asparagus"; icon = "🥦" }
       ];
     },
     {
@@ -58,7 +72,14 @@ actor {
         { name = "Cream"; icon = "🍶" },
         { name = "Ice Cream"; icon = "🍦" },
         { name = "Sour Cream"; icon = "🥛" },
-        { name = "Cottage Cheese"; icon = "🧀" }
+        { name = "Cottage Cheese"; icon = "🧀" },
+        { name = "Whipped Cream"; icon = "🍨" },
+        { name = "Mozzarella"; icon = "🧀" },
+        { name = "Cheddar"; icon = "🧀" },
+        { name = "Parmesan"; icon = "🧀" },
+        { name = "Gouda"; icon = "🧀" },
+        { name = "Feta"; icon = "🧀" },
+        { name = "Cream Cheese"; icon = "🧀" }
       ];
     },
     {
@@ -72,7 +93,14 @@ actor {
         { name = "Bagel"; icon = "🥯" },
         { name = "Donut"; icon = "🍩" },
         { name = "Pie"; icon = "🥧" },
-        { name = "Cookies"; icon = "🍪" }
+        { name = "Cookies"; icon = "🍪" },
+        { name = "Baguette"; icon = "🥖" },
+        { name = "Pretzel"; icon = "🥨" },
+        { name = "Pancakes"; icon = "🥞" },
+        { name = "Waffle"; icon = "🧇" },
+        { name = "Cupcake"; icon = "🧁" },
+        { name = "Biscuit"; icon = "🍪" },
+        { name = "Danish Pastry"; icon = "🥐" }
       ];
     },
     {
@@ -86,7 +114,14 @@ actor {
         { name = "Turkey"; icon = "🦃" },
         { name = "Lamb"; icon = "🍖" },
         { name = "Sausage"; icon = "🌭" },
-        { name = "Ham"; icon = "🍖" }
+        { name = "Ham"; icon = "🍖" },
+        { name = "Steak"; icon = "🥩" },
+        { name = "Bacon"; icon = "🥓" },
+        { name = "Salami"; icon = "🍖" },
+        { name = "Shrimp"; icon = "🍤" },
+        { name = "Crab"; icon = "🦀" },
+        { name = "Lobster"; icon = "🦞" },
+        { name = "Duck"; icon = "🦆" }
       ];
     },
     {
@@ -100,7 +135,14 @@ actor {
         { name = "Juice"; icon = "🧃" },
         { name = "Beer"; icon = "🍺" },
         { name = "Wine"; icon = "🍷" },
-        { name = "Smoothie"; icon = "🥤" }
+        { name = "Smoothie"; icon = "🥤" },
+        { name = "Milk Shake"; icon = "🥛" },
+        { name = "Lemonade"; icon = "🍋" },
+        { name = "Cocktail"; icon = "🍸" },
+        { name = "Hot Chocolate"; icon = "☕" },
+        { name = "Iced Tea"; icon = "🧊🍵" },
+        { name = "Energy Drink"; icon = "⚡🥤" },
+        { name = "Coconut Water"; icon = "🥥" }
       ];
     },
     {
@@ -114,7 +156,14 @@ actor {
         { name = "Crackers"; icon = "🍘" },
         { name = "Pretzels"; icon = "🥨" },
         { name = "Granola Bar"; icon = "🍫" },
-        { name = "Trail Mix"; icon = "🥜" }
+        { name = "Trail Mix"; icon = "🥜" },
+        { name = "Candy"; icon = "🍬" },
+        { name = "Gummy Bears"; icon = "🐻" },
+        { name = "Fruit Snacks"; icon = "🍇" },
+        { name = "Rice Cakes"; icon = "🍘" },
+        { name = "Beef Jerky"; icon = "🥩" },
+        { name = "Peanut Butter"; icon = "🥜" },
+        { name = "Cheese Puffs"; icon = "🧀" }
       ];
     }
   ];

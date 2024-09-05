@@ -1,19 +1,15 @@
 type Item = 
  record {
-   description: opt text;
    icon: text;
-   id: text;
    name: text;
-   price: opt float64;
  };
 type Category = 
  record {
    icon: text;
-   id: text;
+   items: vec Item;
    name: text;
  };
 service : {
   getCategories: () -> (vec Category) query;
   getItemsByCategory: (text) -> (opt vec Item) query;
-  initialize: () -> ();
 }

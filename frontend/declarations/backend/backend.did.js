@@ -1,15 +1,9 @@
 export const idlFactory = ({ IDL }) => {
+  const Item = IDL.Record({ 'icon' : IDL.Text, 'name' : IDL.Text });
   const Category = IDL.Record({
-    'id' : IDL.Text,
     'icon' : IDL.Text,
     'name' : IDL.Text,
-  });
-  const Item = IDL.Record({
-    'id' : IDL.Text,
-    'icon' : IDL.Text,
-    'name' : IDL.Text,
-    'description' : IDL.Opt(IDL.Text),
-    'price' : IDL.Opt(IDL.Float64),
+    'items' : IDL.Vec(Item),
   });
   return IDL.Service({
     'getCategories' : IDL.Func([], [IDL.Vec(Category)], ['query']),
@@ -18,7 +12,6 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Opt(IDL.Vec(Item))],
         ['query'],
       ),
-    'initialize' : IDL.Func([], [], []),
   });
 };
 export const init = ({ IDL }) => { return []; };

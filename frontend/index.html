@@ -107,6 +107,15 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        #shoppingListCount {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -128,6 +137,7 @@
     </div>
     <div id="shopping-list">
         <h2>Shopping List</h2>
+        <div id="shoppingListCount">Items: 0</div>
         <ul id="shoppingListItems"></ul>
     </div>
 
@@ -235,7 +245,9 @@
 
         function updateShoppingList() {
             const shoppingListElement = document.getElementById('shoppingListItems');
+            const shoppingListCountElement = document.getElementById('shoppingListCount');
             shoppingListElement.innerHTML = '';
+            shoppingListCountElement.textContent = `Items: ${shoppingList.length}`;
             shoppingList.forEach(item => {
                 const li = document.createElement('li');
                 li.innerHTML = `

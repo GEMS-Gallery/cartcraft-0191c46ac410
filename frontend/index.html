@@ -113,12 +113,12 @@
     <div id="categories">
         <h2>Categories</h2>
         <ul id="categoryList">
-            <li onclick="showItems('Fruits')"><i class="fas fa-apple-alt"></i>Fruits</li>
+            <li onclick="showItems('Fruits')"><i class="fas fa-apple-whole"></i>Fruits</li>
             <li onclick="showItems('Vegetables')"><i class="fas fa-carrot"></i>Vegetables</li>
             <li onclick="showItems('Dairy')"><i class="fas fa-cheese"></i>Dairy</li>
             <li onclick="showItems('Bakery')"><i class="fas fa-bread-slice"></i>Bakery</li>
             <li onclick="showItems('Meat')"><i class="fas fa-drumstick-bite"></i>Meat</li>
-            <li onclick="showItems('Beverages')"><i class="fas fa-wine-bottle"></i>Beverages</li>
+            <li onclick="showItems('Beverages')"><i class="fas fa-bottle-water"></i>Beverages</li>
             <li onclick="showItems('Snacks')"><i class="fas fa-cookie"></i>Snacks</li>
         </ul>
     </div>
@@ -134,10 +134,10 @@
     <script>
         const itemsByCategory = {
             Fruits: [
-                {name: 'Apple', icon: 'fa-apple-alt'},
+                {name: 'Apple', icon: 'fa-apple-whole'},
                 {name: 'Banana', icon: 'fa-banana'},
-                {name: 'Orange', icon: 'fa-orange'},
-                {name: 'Grapes', icon: 'fa-grapes'},
+                {name: 'Orange', icon: 'fa-citrus'},
+                {name: 'Grapes', icon: 'fa-grape'},
                 {name: 'Strawberry', icon: 'fa-strawberry'},
                 {name: 'Pineapple', icon: 'fa-pineapple'},
                 {name: 'Mango', icon: 'fa-mango'},
@@ -147,27 +147,27 @@
                 {name: 'Carrot', icon: 'fa-carrot'},
                 {name: 'Broccoli', icon: 'fa-broccoli'},
                 {name: 'Tomato', icon: 'fa-tomato'},
-                {name: 'Cucumber', icon: 'fa-pepper-hot'},
+                {name: 'Cucumber', icon: 'fa-cucumber'},
                 {name: 'Lettuce', icon: 'fa-leaf'},
                 {name: 'Potato', icon: 'fa-potato'},
                 {name: 'Onion', icon: 'fa-onion'},
                 {name: 'Bell Pepper', icon: 'fa-pepper-hot'}
             ],
             Dairy: [
-                {name: 'Milk', icon: 'fa-glass-milk'},
+                {name: 'Milk', icon: 'fa-bottle-droplet'},
                 {name: 'Cheese', icon: 'fa-cheese'},
-                {name: 'Yogurt', icon: 'fa-yogurt'},
+                {name: 'Yogurt', icon: 'fa-jar'},
                 {name: 'Butter', icon: 'fa-butter'},
-                {name: 'Cream', icon: 'fa-cream'},
+                {name: 'Cream', icon: 'fa-bottle-droplet'},
                 {name: 'Ice Cream', icon: 'fa-ice-cream'},
-                {name: 'Sour Cream', icon: 'fa-cream'},
+                {name: 'Sour Cream', icon: 'fa-jar'},
                 {name: 'Cottage Cheese', icon: 'fa-cheese'}
             ],
             Bakery: [
                 {name: 'Bread', icon: 'fa-bread-slice'},
                 {name: 'Croissant', icon: 'fa-croissant'},
-                {name: 'Muffin', icon: 'fa-muffin'},
-                {name: 'Cake', icon: 'fa-birthday-cake'},
+                {name: 'Muffin', icon: 'fa-cupcake'},
+                {name: 'Cake', icon: 'fa-cake-candles'},
                 {name: 'Bagel', icon: 'fa-bagel'},
                 {name: 'Donut', icon: 'fa-donut'},
                 {name: 'Pie', icon: 'fa-pie'},
@@ -180,27 +180,27 @@
                 {name: 'Fish', icon: 'fa-fish'},
                 {name: 'Turkey', icon: 'fa-turkey'},
                 {name: 'Lamb', icon: 'fa-sheep'},
-                {name: 'Sausage', icon: 'fa-hotdog'},
+                {name: 'Sausage', icon: 'fa-sausage'},
                 {name: 'Ham', icon: 'fa-ham'}
             ],
             Beverages: [
-                {name: 'Water', icon: 'fa-tint'},
-                {name: 'Soda', icon: 'fa-glass-whiskey'},
-                {name: 'Coffee', icon: 'fa-coffee'},
-                {name: 'Tea', icon: 'fa-mug-hot'},
-                {name: 'Juice', icon: 'fa-glass-juice'},
-                {name: 'Beer', icon: 'fa-beer'},
-                {name: 'Wine', icon: 'fa-wine-glass-alt'},
+                {name: 'Water', icon: 'fa-bottle-water'},
+                {name: 'Soda', icon: 'fa-can-food'},
+                {name: 'Coffee', icon: 'fa-mug-hot'},
+                {name: 'Tea', icon: 'fa-mug-saucer'},
+                {name: 'Juice', icon: 'fa-glass-citrus'},
+                {name: 'Beer', icon: 'fa-beer-mug-empty'},
+                {name: 'Wine', icon: 'fa-wine-glass'},
                 {name: 'Smoothie', icon: 'fa-blender'}
             ],
             Snacks: [
-                {name: 'Chips', icon: 'fa-cookie'},
+                {name: 'Chips', icon: 'fa-bag-shopping'},
                 {name: 'Popcorn', icon: 'fa-popcorn'},
-                {name: 'Nuts', icon: 'fa-nuts'},
-                {name: 'Chocolate', icon: 'fa-candy-bar'},
+                {name: 'Nuts', icon: 'fa-nut'},
+                {name: 'Chocolate', icon: 'fa-chocolate-bar'},
                 {name: 'Crackers', icon: 'fa-cookie'},
                 {name: 'Pretzels', icon: 'fa-pretzel'},
-                {name: 'Granola Bar', icon: 'fa-cookie-bite'},
+                {name: 'Granola Bar', icon: 'fa-rectangle-vertical'},
                 {name: 'Trail Mix', icon: 'fa-seedling'}
             ]
         };

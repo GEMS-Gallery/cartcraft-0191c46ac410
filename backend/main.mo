@@ -21,12 +21,12 @@ actor {
   stable var categoriesArray: [Category] = [
     {
       name = "Fruits";
-      icon = "fa-apple-alt";
+      icon = "fa-apple-whole";
       items = [
-        { name = "Apple"; icon = "fa-apple-alt" },
+        { name = "Apple"; icon = "fa-apple-whole" },
         { name = "Banana"; icon = "fa-banana" },
-        { name = "Orange"; icon = "fa-orange" },
-        { name = "Grapes"; icon = "fa-grapes" },
+        { name = "Orange"; icon = "fa-citrus" },
+        { name = "Grapes"; icon = "fa-grape" },
         { name = "Strawberry"; icon = "fa-strawberry" },
         { name = "Pineapple"; icon = "fa-pineapple" },
         { name = "Mango"; icon = "fa-mango" },
@@ -40,7 +40,7 @@ actor {
         { name = "Carrot"; icon = "fa-carrot" },
         { name = "Broccoli"; icon = "fa-broccoli" },
         { name = "Tomato"; icon = "fa-tomato" },
-        { name = "Cucumber"; icon = "fa-pepper-hot" },
+        { name = "Cucumber"; icon = "fa-cucumber" },
         { name = "Lettuce"; icon = "fa-leaf" },
         { name = "Potato"; icon = "fa-potato" },
         { name = "Onion"; icon = "fa-onion" },
@@ -51,13 +51,13 @@ actor {
       name = "Dairy";
       icon = "fa-cheese";
       items = [
-        { name = "Milk"; icon = "fa-glass-milk" },
+        { name = "Milk"; icon = "fa-bottle-droplet" },
         { name = "Cheese"; icon = "fa-cheese" },
-        { name = "Yogurt"; icon = "fa-yogurt" },
+        { name = "Yogurt"; icon = "fa-jar" },
         { name = "Butter"; icon = "fa-butter" },
-        { name = "Cream"; icon = "fa-cream" },
+        { name = "Cream"; icon = "fa-bottle-droplet" },
         { name = "Ice Cream"; icon = "fa-ice-cream" },
-        { name = "Sour Cream"; icon = "fa-cream" },
+        { name = "Sour Cream"; icon = "fa-jar" },
         { name = "Cottage Cheese"; icon = "fa-cheese" }
       ];
     },
@@ -67,8 +67,8 @@ actor {
       items = [
         { name = "Bread"; icon = "fa-bread-slice" },
         { name = "Croissant"; icon = "fa-croissant" },
-        { name = "Muffin"; icon = "fa-muffin" },
-        { name = "Cake"; icon = "fa-birthday-cake" },
+        { name = "Muffin"; icon = "fa-cupcake" },
+        { name = "Cake"; icon = "fa-cake-candles" },
         { name = "Bagel"; icon = "fa-bagel" },
         { name = "Donut"; icon = "fa-donut" },
         { name = "Pie"; icon = "fa-pie" },
@@ -85,21 +85,21 @@ actor {
         { name = "Fish"; icon = "fa-fish" },
         { name = "Turkey"; icon = "fa-turkey" },
         { name = "Lamb"; icon = "fa-sheep" },
-        { name = "Sausage"; icon = "fa-hotdog" },
+        { name = "Sausage"; icon = "fa-sausage" },
         { name = "Ham"; icon = "fa-ham" }
       ];
     },
     {
       name = "Beverages";
-      icon = "fa-wine-bottle";
+      icon = "fa-bottle-water";
       items = [
-        { name = "Water"; icon = "fa-tint" },
-        { name = "Soda"; icon = "fa-glass-whiskey" },
-        { name = "Coffee"; icon = "fa-coffee" },
-        { name = "Tea"; icon = "fa-mug-hot" },
-        { name = "Juice"; icon = "fa-glass-juice" },
-        { name = "Beer"; icon = "fa-beer" },
-        { name = "Wine"; icon = "fa-wine-glass-alt" },
+        { name = "Water"; icon = "fa-bottle-water" },
+        { name = "Soda"; icon = "fa-can-food" },
+        { name = "Coffee"; icon = "fa-mug-hot" },
+        { name = "Tea"; icon = "fa-mug-saucer" },
+        { name = "Juice"; icon = "fa-glass-citrus" },
+        { name = "Beer"; icon = "fa-beer-mug-empty" },
+        { name = "Wine"; icon = "fa-wine-glass" },
         { name = "Smoothie"; icon = "fa-blender" }
       ];
     },
@@ -107,13 +107,13 @@ actor {
       name = "Snacks";
       icon = "fa-cookie";
       items = [
-        { name = "Chips"; icon = "fa-cookie" },
+        { name = "Chips"; icon = "fa-bag-shopping" },
         { name = "Popcorn"; icon = "fa-popcorn" },
-        { name = "Nuts"; icon = "fa-nuts" },
-        { name = "Chocolate"; icon = "fa-candy-bar" },
+        { name = "Nuts"; icon = "fa-nut" },
+        { name = "Chocolate"; icon = "fa-chocolate-bar" },
         { name = "Crackers"; icon = "fa-cookie" },
         { name = "Pretzels"; icon = "fa-pretzel" },
-        { name = "Granola Bar"; icon = "fa-cookie-bite" },
+        { name = "Granola Bar"; icon = "fa-rectangle-vertical" },
         { name = "Trail Mix"; icon = "fa-seedling" }
       ];
     }

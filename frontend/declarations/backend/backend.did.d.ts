@@ -3,8 +3,8 @@ import type { ActorMethod } from '@dfinity/agent';
 import type { IDL } from '@dfinity/candid';
 
 export interface Category {
-  'icon' : string,
   'name' : string,
+  'icons' : Array<string>,
   'items' : Array<Item>,
 }
 export interface Item { 'icon' : string, 'name' : string }

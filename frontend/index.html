@@ -59,7 +59,7 @@
             background-color: var(--primary-color);
             color: white;
         }
-        #categoryList li i {
+        #categoryList li span {
             margin-right: 10px;
             font-size: 1.2em;
         }
@@ -121,15 +121,7 @@
 <body>
     <div id="categories">
         <h2>Categories</h2>
-        <ul id="categoryList">
-            <li onclick="showItems('Fruits')"><i class="fas fa-apple-whole"></i>Fruits</li>
-            <li onclick="showItems('Vegetables')"><i class="fas fa-carrot"></i>Vegetables</li>
-            <li onclick="showItems('Dairy')"><i class="fas fa-cheese"></i>Dairy</li>
-            <li onclick="showItems('Bakery')"><i class="fas fa-bread-slice"></i>Bakery</li>
-            <li onclick="showItems('Meat')"><i class="fas fa-drumstick-bite"></i>Meat</li>
-            <li onclick="showItems('Beverages')"><i class="fas fa-bottle-water"></i>Beverages</li>
-            <li onclick="showItems('Snacks')"><i class="fas fa-cookie"></i>Snacks</li>
-        </ul>
+        <ul id="categoryList"></ul>
     </div>
     <div id="items">
         <h2 id="categoryTitle">Select a Category</h2>
@@ -142,6 +134,16 @@
     </div>
 
     <script>
+        const categories = [
+            { name: "Fruits", icons: ["🍎", "🍌", "🍇", "🍓"] },
+            { name: "Vegetables", icons: ["🥕", "🥦", "🍅", "🥬"] },
+            { name: "Dairy", icons: ["🥛", "🧀", "🍦", "🧈"] },
+            { name: "Bakery", icons: ["🍞", "🥐", "🎂", "🥨"] },
+            { name: "Meat", icons: ["🍗", "🥩", "🍖", "🥓"] },
+            { name: "Beverages", icons: ["🥤", "☕", "🍷", "🧃"] },
+            { name: "Snacks", icons: ["🍿", "🥨", "🍫", "🥜"] }
+        ];
+
         const itemsByCategory = {
             Fruits: [
                 {name: 'Apple', icon: '🍎'},
@@ -151,7 +153,11 @@
                 {name: 'Strawberry', icon: '🍓'},
                 {name: 'Pineapple', icon: '🍍'},
                 {name: 'Mango', icon: '🥭'},
-                {name: 'Kiwi', icon: '🥝'}
+                {name: 'Kiwi', icon: '🥝'},
+                {name: 'Watermelon', icon: '🍉'},
+                {name: 'Peach', icon: '🍑'},
+                {name: 'Cherries', icon: '🍒'},
+                {name: 'Pear', icon: '🍐'}
             ],
             Vegetables: [
                 {name: 'Carrot', icon: '🥕'},
@@ -161,7 +167,11 @@
                 {name: 'Lettuce', icon: '🥬'},
                 {name: 'Potato', icon: '🥔'},
                 {name: 'Onion', icon: '🧅'},
-                {name: 'Bell Pepper', icon: '🫑'}
+                {name: 'Bell Pepper', icon: '🫑'},
+                {name: 'Eggplant', icon: '🍆'},
+                {name: 'Corn', icon: '🌽'},
+                {name: 'Mushroom', icon: '🍄'},
+                {name: 'Garlic', icon: '🧄'}
             ],
             Dairy: [
                 {name: 'Milk', icon: '🥛'},
@@ -171,7 +181,11 @@
                 {name: 'Cream', icon: '🍶'},
                 {name: 'Ice Cream', icon: '🍦'},
                 {name: 'Sour Cream', icon: '🥛'},
-                {name: 'Cottage Cheese', icon: '🧀'}
+                {name: 'Cottage Cheese', icon: '🧀'},
+                {name: 'Whipped Cream', icon: '🍨'},
+                {name: 'Milkshake', icon: '🥤'},
+                {name: 'Egg', icon: '🥚'},
+                {name: 'Custard', icon: '🍮'}
             ],
             Bakery: [
                 {name: 'Bread', icon: '🍞'},
@@ -181,7 +195,11 @@
                 {name: 'Bagel', icon: '🥯'},
                 {name: 'Donut', icon: '🍩'},
                 {name: 'Pie', icon: '🥧'},
-                {name: 'Cookies', icon: '🍪'}
+                {name: 'Cookies', icon: '🍪'},
+                {name: 'Pretzel', icon: '🥨'},
+                {name: 'Pancakes', icon: '🥞'},
+                {name: 'Waffle', icon: '🧇'},
+                {name: 'Baguette', icon: '🥖'}
             ],
             Meat: [
                 {name: 'Chicken', icon: '🍗'},
@@ -191,7 +209,11 @@
                 {name: 'Turkey', icon: '🦃'},
                 {name: 'Lamb', icon: '🍖'},
                 {name: 'Sausage', icon: '🌭'},
-                {name: 'Ham', icon: '🍖'}
+                {name: 'Ham', icon: '🍖'},
+                {name: 'Shrimp', icon: '🍤'},
+                {name: 'Crab', icon: '🦀'},
+                {name: 'Lobster', icon: '🦞'},
+                {name: 'Steak', icon: '🥩'}
             ],
             Beverages: [
                 {name: 'Water', icon: '💧'},
@@ -201,7 +223,11 @@
                 {name: 'Juice', icon: '🧃'},
                 {name: 'Beer', icon: '🍺'},
                 {name: 'Wine', icon: '🍷'},
-                {name: 'Smoothie', icon: '🥤'}
+                {name: 'Smoothie', icon: '🥤'},
+                {name: 'Cocktail', icon: '🍸'},
+                {name: 'Lemonade', icon: '🍋'},
+                {name: 'Milk Tea', icon: '🧋'},
+                {name: 'Hot Chocolate', icon: '🍫'}
             ],
             Snacks: [
                 {name: 'Chips', icon: '🍟'},
@@ -211,11 +237,25 @@
                 {name: 'Crackers', icon: '🍘'},
                 {name: 'Pretzels', icon: '🥨'},
                 {name: 'Granola Bar', icon: '🍫'},
-                {name: 'Trail Mix', icon: '🥜'}
+                {name: 'Trail Mix', icon: '🥜'},
+                {name: 'Candy', icon: '🍬'},
+                {name: 'Gummy Bears', icon: '🐻'},
+                {name: 'Ice Cream Bar', icon: '🍦'},
+                {name: 'Rice Cakes', icon: '🍘'}
             ]
         };
 
         let shoppingList = [];
+
+        function initializeCategories() {
+            const categoryList = document.getElementById('categoryList');
+            categories.forEach(category => {
+                const li = document.createElement('li');
+                li.innerHTML = `${category.icons.join('')} ${category.name}`;
+                li.onclick = () => showItems(category.name);
+                categoryList.appendChild(li);
+            });
+        }
 
         function showItems(category) {
             const itemList = document.getElementById('itemList');
@@ -258,7 +298,8 @@
             });
         }
 
-        // Show Fruits by default
+        // Initialize categories and show Fruits by default
+        initializeCategories();
         showItems('Fruits');
     </script>
 </body>

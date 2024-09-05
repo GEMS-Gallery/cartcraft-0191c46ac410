@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Grocery App</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary-color: #635bff;
@@ -40,6 +41,8 @@
             padding: 20px;
             box-shadow: -2px 0 10px rgba(0,0,0,0.1);
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
         ul {
             list-style-type: none;
@@ -116,6 +119,11 @@
             display: inline-block;
             margin-bottom: 15px;
         }
+        #pieChartContainer {
+            margin-top: auto;
+            width: 100%;
+            height: 300px;
+        }
     </style>
 </head>
 <body>
@@ -139,6 +147,9 @@
         <h2>Shopping List</h2>
         <div id="shoppingListCount">Items: 0</div>
         <ul id="shoppingListItems"></ul>
+        <div id="pieChartContainer">
+            <canvas id="pieChart"></canvas>
+        </div>
     </div>
 
     <script>
@@ -265,6 +276,7 @@
         };
 
         let shoppingList = [];
+        let pieChart;
 
         function showItems(category) {
             const itemList = document.getElementById('itemList');
@@ -275,14 +287,14 @@
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'item';
                 itemDiv.innerHTML = `<span>${item.icon}</span><p>${item.name}</p>`;
-                itemDiv.onclick = () => addToShoppingList(item);
+                itemDiv.onclick = () => addToShoppingList(item, category);
                 itemList.appendChild(itemDiv);
             });
         }
 
-        function addToShoppingList(item) {
+        function addToShoppingList(item, category) {
             if (!shoppingList.some(i => i.name === item.name)) {
-                shoppingList.push(item);
+                shoppingList.push({...item, category});
                 updateShoppingList();
             }
         }
@@ -305,6 +317,46 @@
                 `;
                 shoppingListElement.appendChild(li);
             });
+            updatePieChart();
+        }
+
+        function updatePieChart() {
+            const categoryCount = {};
+            shoppingList.forEach(item => {
+                categoryCount[item.category] = (categoryCount[item.category] || 0) + 1;
+            });
+
+            const data = {
+                labels: Object.keys(categoryCount),
+                datasets: [{
+                    data: Object.values(categoryCount),
+                    backgroundColor: [
+                        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#FF6384'
+                    ]
+                }]
+            };
+
+            if (pieChart) {
+                pieChart.data = data;
+                pieChart.update();
+            } else {
+                const ctx = document.getElementById('pieChart').getContext('2d');
+                pieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Shopping List Categories'
+                        }
+                    }
+                });
+            }
         }
 
         // Show Fruits by default

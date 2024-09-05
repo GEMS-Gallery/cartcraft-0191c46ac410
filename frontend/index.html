@@ -14,30 +14,41 @@
             --text-color: #1a1f36;
             --item-background: #ffffff;
         }
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             background-color: var(--background-color);
             color: var(--text-color);
+            min-height: 100vh;
+        }
+        #app-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
         }
         #categories {
             width: 240px;
             background-color: var(--item-background);
-            height: 100vh;
+            height: 100%;
             padding: 20px;
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
         }
         #items {
             flex-grow: 1;
-            padding: 40px;
+            padding: 20px;
             overflow-y: auto;
         }
         #shopping-list {
             width: 300px;
             background-color: var(--item-background);
-            height: 100vh;
+            height: 100%;
             padding: 20px;
             box-shadow: -2px 0 10px rgba(0,0,0,0.1);
             overflow-y: auto;
@@ -68,13 +79,13 @@
         }
         #itemList {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 20px;
         }
         .item {
             background-color: var(--item-background);
             border-radius: 8px;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
@@ -124,31 +135,57 @@
             width: 100%;
             height: 300px;
         }
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            #app-container {
+                flex-direction: column;
+            }
+            #categories, #items, #shopping-list {
+                width: 100%;
+                height: auto;
+            }
+            #categories {
+                order: 1;
+            }
+            #items {
+                order: 2;
+            }
+            #shopping-list {
+                order: 3;
+            }
+            #itemList {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="categories">
-        <h2>Categories</h2>
-        <ul id="categoryList">
-            <li onclick="showItems('Fruits')"><i class="fas fa-apple-whole"></i>Fruits</li>
-            <li onclick="showItems('Vegetables')"><i class="fas fa-carrot"></i>Vegetables</li>
-            <li onclick="showItems('Dairy')"><i class="fas fa-cheese"></i>Dairy</li>
-            <li onclick="showItems('Bakery')"><i class="fas fa-bread-slice"></i>Bakery</li>
-            <li onclick="showItems('Meat')"><i class="fas fa-drumstick-bite"></i>Meat</li>
-            <li onclick="showItems('Beverages')"><i class="fas fa-bottle-water"></i>Beverages</li>
-            <li onclick="showItems('Snacks')"><i class="fas fa-cookie"></i>Snacks</li>
-        </ul>
-    </div>
-    <div id="items">
-        <h2 id="categoryTitle">Select a Category</h2>
-        <div id="itemList"></div>
-    </div>
-    <div id="shopping-list">
-        <h2>Shopping List</h2>
-        <div id="shoppingListCount">Items: 0</div>
-        <ul id="shoppingListItems"></ul>
-        <div id="pieChartContainer">
-            <canvas id="pieChart"></canvas>
+    <div id="app-container">
+        <div id="categories">
+            <h2>Categories</h2>
+            <ul id="categoryList">
+                <li onclick="showItems('Fruits')"><i class="fas fa-apple-whole"></i>Fruits</li>
+                <li onclick="showItems('Vegetables')"><i class="fas fa-carrot"></i>Vegetables</li>
+                <li onclick="showItems('Dairy')"><i class="fas fa-cheese"></i>Dairy</li>
+                <li onclick="showItems('Bakery')"><i class="fas fa-bread-slice"></i>Bakery</li>
+                <li onclick="showItems('Meat')"><i class="fas fa-drumstick-bite"></i>Meat</li>
+                <li onclick="showItems('Beverages')"><i class="fas fa-bottle-water"></i>Beverages</li>
+                <li onclick="showItems('Snacks')"><i class="fas fa-cookie"></i>Snacks</li>
+            </ul>
+        </div>
+        <div id="items">
+            <h2 id="categoryTitle">Select a Category</h2>
+            <div id="itemList"></div>
+        </div>
+        <div id="shopping-list">
+            <h2>Shopping List</h2>
+            <div id="shoppingListCount">Items: 0</div>
+            <ul id="shoppingListItems"></ul>
+            <div id="pieChartContainer">
+                <canvas id="pieChart"></canvas>
+            </div>
         </div>
     </div>
 
@@ -361,6 +398,13 @@
 
         // Show Fruits by default
         showItems('Fruits');
+
+        // Handle resize events
+        window.addEventListener('resize', function() {
+            if (pieChart) {
+                pieChart.resize();
+            }
+        });
     </script>
 </body>
 </html>

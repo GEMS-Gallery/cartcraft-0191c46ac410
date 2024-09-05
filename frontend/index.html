@@ -33,6 +33,14 @@
             padding: 40px;
             overflow-y: auto;
         }
+        #shopping-list {
+            width: 300px;
+            background-color: var(--item-background);
+            height: 100vh;
+            padding: 20px;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
         ul {
             list-style-type: none;
             padding: 0;
@@ -67,6 +75,7 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         .item:hover {
             transform: translateY(-5px);
@@ -80,6 +89,23 @@
         h2 {
             margin-bottom: 20px;
             color: var(--primary-color);
+        }
+        #shoppingListItems li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: var(--background-color);
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        #shoppingListItems li button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -99,6 +125,10 @@
     <div id="items">
         <h2 id="categoryTitle">Select a Category</h2>
         <div id="itemList"></div>
+    </div>
+    <div id="shopping-list">
+        <h2>Shopping List</h2>
+        <ul id="shoppingListItems"></ul>
     </div>
 
     <script>
@@ -175,6 +205,8 @@
             ]
         };
 
+        let shoppingList = [];
+
         function showItems(category) {
             const itemList = document.getElementById('itemList');
             const categoryTitle = document.getElementById('categoryTitle');
@@ -184,7 +216,33 @@
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'item';
                 itemDiv.innerHTML = `<i class="fas ${item.icon}"></i><p>${item.name}</p>`;
+                itemDiv.onclick = () => addToShoppingList(item);
                 itemList.appendChild(itemDiv);
+            });
+        }
+
+        function addToShoppingList(item) {
+            if (!shoppingList.some(i => i.name === item.name)) {
+                shoppingList.push(item);
+                updateShoppingList();
+            }
+        }
+
+        function removeFromShoppingList(itemName) {
+            shoppingList = shoppingList.filter(item => item.name !== itemName);
+            updateShoppingList();
+        }
+
+        function updateShoppingList() {
+            const shoppingListElement = document.getElementById('shoppingListItems');
+            shoppingListElement.innerHTML = '';
+            shoppingList.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span><i class="fas ${item.icon}"></i> ${item.name}</span>
+                    <button onclick="removeFromShoppingList('${item.name}')">Remove</button>
+                `;
+                shoppingListElement.appendChild(li);
             });
         }
 

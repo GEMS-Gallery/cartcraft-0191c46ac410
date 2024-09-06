@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Grocery App</title>
+    <title>GroceryGo - Your Smart Shopping Companion</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -32,8 +32,13 @@
             background-color: var(--primary-color);
             color: white;
             padding: 1rem;
-            text-align: center;
+            display: flex;
+            align-items: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        header .logo {
+            font-size: 1.5rem;
+            margin-right: 10px;
         }
         header h1 {
             margin: 0;
@@ -284,7 +289,8 @@
 </head>
 <body>
     <header>
-        <h1>Modern Grocery App</h1>
+        <i class="fas fa-shopping-cart logo"></i>
+        <h1>GroceryGo</h1>
     </header>
     <div id="app-container">
         <div id="categories">
@@ -412,7 +418,7 @@
                 {name: 'Water', icon: '💧'},
                 {name: 'Soda', icon: '🥤'},
                 {name: 'Coffee', icon: '☕'},
-                {name: 'Tea', icon: '🍵'},
+                {name: 'Tea',icon: '🍵'},
                 {name: 'Juice', icon: '🧃'},
                 {name: 'Beer', icon: '🍺'},
                 {name: 'Wine', icon: '🍷'},

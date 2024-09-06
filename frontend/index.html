@@ -82,6 +82,11 @@
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 20px;
         }
+        #itemList.list-view {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
         .item {
             background-color: var(--item-background);
             border-radius: 8px;
@@ -99,6 +104,16 @@
             font-size: 2em;
             margin-bottom: 10px;
             display: block;
+        }
+        #itemList.list-view .item {
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+        #itemList.list-view .item span {
+            font-size: 1.5em;
+            margin-right: 15px;
+            margin-bottom: 0;
         }
         h2 {
             margin-bottom: 20px;
@@ -134,6 +149,25 @@
             margin-top: auto;
             width: 100%;
             height: 300px;
+        }
+        #viewToggle {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        #viewToggle:hover {
+            background-color: var(--secondary-color);
+        }
+        #viewToggle i {
+            margin-right: 8px;
         }
         @media (max-width: 768px) {
             body {
@@ -177,6 +211,9 @@
         </div>
         <div id="items">
             <h2 id="categoryTitle">Select a Category</h2>
+            <button id="viewToggle" onclick="toggleView()">
+                <i class="fas fa-th-large"></i> Grid View
+            </button>
             <div id="itemList"></div>
         </div>
         <div id="shopping-list">
@@ -314,6 +351,21 @@
 
         let shoppingList = [];
         let pieChart;
+        let isGridView = true;
+
+        function toggleView() {
+            isGridView = !isGridView;
+            const itemList = document.getElementById('itemList');
+            const viewToggle = document.getElementById('viewToggle');
+            if (isGridView) {
+                itemList.classList.remove('list-view');
+                viewToggle.innerHTML = '<i class="fas fa-th-large"></i> Grid View';
+            } else {
+                itemList.classList.add('list-view');
+                viewToggle.innerHTML = '<i class="fas fa-list"></i> List View';
+            }
+            showItems(document.getElementById('categoryTitle').textContent);
+        }
 
         function showItems(category) {
             const itemList = document.getElementById('itemList');

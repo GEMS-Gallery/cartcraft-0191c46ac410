@@ -12,6 +12,11 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Opt(IDL.Vec(Item))],
         ['query'],
       ),
+    'searchItems' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(IDL.Tuple(IDL.Text, IDL.Vec(Item)))],
+        ['query'],
+      ),
   });
 };
 export const init = ({ IDL }) => { return []; };

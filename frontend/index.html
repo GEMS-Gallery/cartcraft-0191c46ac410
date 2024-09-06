@@ -169,6 +169,29 @@
         #viewToggle i {
             margin-right: 8px;
         }
+        #searchContainer {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        #searchInput {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid var(--primary-color);
+            border-radius: 20px 0 0 20px;
+            font-size: 16px;
+        }
+        #searchButton {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #searchButton:hover {
+            background-color: var(--secondary-color);
+        }
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
@@ -211,6 +234,10 @@
         </div>
         <div id="items">
             <h2 id="categoryTitle">Select a Category</h2>
+            <div id="searchContainer">
+                <input type="text" id="searchInput" placeholder="Search items...">
+                <button id="searchButton" onclick="searchItems()"><i class="fas fa-search"></i></button>
+            </div>
             <button id="viewToggle" onclick="toggleView()">
                 <i class="fas fa-th-large"></i> Grid View
             </button>
@@ -367,12 +394,13 @@
             showItems(document.getElementById('categoryTitle').textContent);
         }
 
-        function showItems(category) {
+        function showItems(category, items = null) {
             const itemList = document.getElementById('itemList');
             const categoryTitle = document.getElementById('categoryTitle');
             itemList.innerHTML = '';
             categoryTitle.textContent = category;
-            itemsByCategory[category].forEach(item => {
+            const itemsToShow = items || itemsByCategory[category] || [];
+            itemsToShow.forEach(item => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'item';
                 itemDiv.innerHTML = `<span>${item.icon}</span><p>${item.name}</p>`;
@@ -448,13 +476,36 @@
             }
         }
 
-        // Show Fruits by default
-        showItems('Fruits');
+        function searchItems() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if (query.trim() === '') {
+                showItems('All Items', Object.values(itemsByCategory).flat());
+                return;
+            }
+            const results = Object.entries(itemsByCategory).reduce((acc, [category, items]) => {
+                const matchingItems = items.filter(item => item.name.toLowerCase().includes(query));
+                if (matchingItems.length > 0) {
+                    acc.push(...matchingItems.map(item => ({ ...item, category })));
+                }
+                return acc;
+            }, []);
+            showItems(`Search Results for "${query}"`, results);
+        }
+
+        // Show all items by default
+        showItems('All Items', Object.values(itemsByCategory).flat());
 
         // Handle resize events
         window.addEventListener('resize', function() {
             if (pieChart) {
                 pieChart.resize();
+            }
+        });
+
+        // Add event listener for search input
+        document.getElementById('searchInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchItems();
             }
         });
     </script>

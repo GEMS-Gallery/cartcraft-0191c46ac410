@@ -179,4 +179,19 @@ actor {
       case null null;
     };
   };
+
+  public query func searchItems(searchQuery: Text) : async [(Text, [Item])] {
+    let lowercaseQuery = Text.toLowercase(searchQuery);
+    let results = Array.mapFilter<Category, (Text, [Item])>(categoriesArray, func(category: Category) : ?(Text, [Item]) {
+      let matchingItems = Array.filter<Item>(category.items, func(item: Item) : Bool {
+        Text.contains(Text.toLowercase(item.name), #text lowercaseQuery)
+      });
+      if (matchingItems.size() > 0) {
+        ?(category.name, matchingItems)
+      } else {
+        null
+      }
+    });
+    results
+  };
 }

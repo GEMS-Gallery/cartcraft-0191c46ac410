@@ -12,4 +12,8 @@ type Category =
 service : {
   getCategories: () -> (vec Category) query;
   getItemsByCategory: (text) -> (opt vec Item) query;
+  searchItems: (text) -> (vec record {
+                                text;
+                                vec Item;
+                              }) query;
 }

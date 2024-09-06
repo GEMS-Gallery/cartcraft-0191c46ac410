@@ -94,7 +94,6 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
         .item:hover {
             transform: translateY(-5px);
@@ -202,16 +201,27 @@
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
             cursor: pointer;
             font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .quantity-selector button:hover {
+            background-color: var(--secondary-color);
         }
         .quantity-selector input {
             width: 40px;
             text-align: center;
             margin: 0 10px;
             font-size: 16px;
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            padding: 5px;
         }
         @media (max-width: 768px) {
             body {
@@ -388,12 +398,11 @@
                 {name: 'Pretzels', icon: '🥨'},
                 {name: 'Granola Bar', icon: '🍫'},
                 {name: 'Trail Mix', icon: '🥜'},
-                {name: 'Candy', icon: '🍬'},
-                {name: 'Gummy Bears', icon: '🐻'},
+                {name: 'Candy', icon: '🍬'},{name: 'Gummy Bears', icon: '🐻'},
                 {name: 'Fruit Snacks', icon: '🍇'},
                 {name: 'Rice Cakes', icon: '🍘'},
                 {name: 'Beef Jerky', icon: '🥩'},
-                {name: 'PeanutButter', icon: '🥜'},
+                {name: 'Peanut Butter', icon: '🥜'},
                 {name: 'Cheese Puffs', icon: '🧀'}
             ],
             Household: [
@@ -446,52 +455,51 @@
                     <span>${item.icon}</span>
                     <p>${item.name}</p>
                     <div class="quantity-selector">
-                        <button onclick="decreaseQuantity(this)">-</button>
-                        <input type="number" value="1" min="1" max="99" onchange="updateQuantity(this)">
-                        <button onclick="increaseQuantity(this)">+</button>
+                        <button onclick="decreaseQuantity(this, '${item.name}', '${item.icon}', '${category}')">-</button>
+                        <input type="number" value="0" min="0" max="99" onchange="updateQuantity(this, '${item.name}', '${item.icon}', '${category}')">
+                        <button onclick="increaseQuantity(this, '${item.name}', '${item.icon}', '${category}')">+</button>
                     </div>
-                    <button onclick="addToShoppingList(this, '${item.name}', '${item.icon}', '${category}')">Add to List</button>
                 `;
                 itemList.appendChild(itemDiv);
             });
         }
 
-        function decreaseQuantity(button) {
+        function decreaseQuantity(button, itemName, itemIcon, category) {
             const input = button.nextElementSibling;
-            if (input.value > 1) {
+            if (input.value > 0) {
                 input.value = parseInt(input.value) - 1;
+                updateShoppingList(itemName, itemIcon, category, parseInt(input.value));
             }
         }
 
-        function increaseQuantity(button) {
+        function increaseQuantity(button, itemName, itemIcon, category) {
             const input = button.previousElementSibling;
             if (input.value < 99) {
                 input.value = parseInt(input.value) + 1;
+                updateShoppingList(itemName, itemIcon, category, parseInt(input.value));
             }
         }
 
-        function updateQuantity(input) {
-            input.value = Math.max(1, Math.min(99, parseInt(input.value) || 1));
+        function updateQuantity(input, itemName, itemIcon, category) {
+            input.value = Math.max(0, Math.min(99, parseInt(input.value) || 0));
+            updateShoppingList(itemName, itemIcon, category, parseInt(input.value));
         }
 
-        function addToShoppingList(button, itemName, itemIcon, category) {
-            const quantityInput = button.previousElementSibling.querySelector('input');
-            const quantity = parseInt(quantityInput.value);
+        function updateShoppingList(itemName, itemIcon, category, quantity) {
             const existingItem = shoppingList.find(item => item.name === itemName);
             if (existingItem) {
-                existingItem.quantity += quantity;
-            } else {
+                if (quantity > 0) {
+                    existingItem.quantity = quantity;
+                } else {
+                    shoppingList = shoppingList.filter(item => item.name !== itemName);
+                }
+            } else if (quantity > 0) {
                 shoppingList.push({name: itemName, icon: itemIcon, quantity: quantity, category: category});
             }
-            updateShoppingList();
+            renderShoppingList();
         }
 
-        function removeFromShoppingList(itemName) {
-            shoppingList = shoppingList.filter(item => item.name !== itemName);
-            updateShoppingList();
-        }
-
-        function updateShoppingList() {
+        function renderShoppingList() {
             const shoppingListElement = document.getElementById('shoppingListItems');
             const shoppingListCountElement = document.getElementById('shoppingListCount');
             shoppingListElement.innerHTML = '';
@@ -505,6 +513,16 @@
                 shoppingListElement.appendChild(li);
             });
             updatePieChart();
+        }
+
+        function removeFromShoppingList(itemName) {
+            shoppingList = shoppingList.filter(item => item.name !== itemName);
+            renderShoppingList();
+            // Reset the quantity in the item list
+            const itemInput = document.querySelector(`input[onchange*="'${itemName}'"`);
+            if (itemInput) {
+                itemInput.value = 0;
+            }
         }
 
         function updatePieChart() {
@@ -578,6 +596,22 @@
                 searchItems();
             }
         });
+
+        // Debounce function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Apply debounce to updateShoppingList
+        const debouncedUpdateShoppingList = debounce(updateShoppingList, 300);
     </script>
 </body>
 </html>

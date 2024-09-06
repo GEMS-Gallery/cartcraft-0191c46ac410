@@ -165,6 +165,27 @@ actor {
         { name = "Peanut Butter"; icon = "🥜" },
         { name = "Cheese Puffs"; icon = "🧀" }
       ];
+    },
+    {
+      name = "Household";
+      icon = "fa-house";
+      items = [
+        { name = "Soap"; icon = "🧼" },
+        { name = "Toilet Paper"; icon = "🧻" },
+        { name = "Detergent"; icon = "🧺" },
+        { name = "Trash Bags"; icon = "🗑️" },
+        { name = "Paper Towels"; icon = "🧻" },
+        { name = "Sponge"; icon = "🧽" },
+        { name = "Dish Soap"; icon = "🍽️" },
+        { name = "Air Freshener"; icon = "🌬️" },
+        { name = "Light Bulb"; icon = "💡" },
+        { name = "Batteries"; icon = "🔋" },
+        { name = "Candles"; icon = "🕯️" },
+        { name = "Matches"; icon = "🔥" },
+        { name = "Aluminum Foil"; icon = "🔲" },
+        { name = "Plastic Wrap"; icon = "🎁" },
+        { name = "Ziploc Bags"; icon = "💼" }
+      ];
     }
   ];
 

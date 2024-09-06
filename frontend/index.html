@@ -192,6 +192,27 @@
         #searchButton:hover {
             background-color: var(--secondary-color);
         }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .quantity-selector button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .quantity-selector input {
+            width: 40px;
+            text-align: center;
+            margin: 0 10px;
+            font-size: 16px;
+        }
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
@@ -372,7 +393,7 @@
                 {name: 'Fruit Snacks', icon: '🍇'},
                 {name: 'Rice Cakes', icon: '🍘'},
                 {name: 'Beef Jerky', icon: '🥩'},
-                {name: 'Peanut Butter', icon: '🥜'},
+                {name: 'PeanutButter', icon: '🥜'},
                 {name: 'Cheese Puffs', icon: '🧀'}
             ],
             Household: [
@@ -421,17 +442,48 @@
             itemsToShow.forEach(item => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'item';
-                itemDiv.innerHTML = `<span>${item.icon}</span><p>${item.name}</p>`;
-                itemDiv.onclick = () => addToShoppingList(item, category);
+                itemDiv.innerHTML = `
+                    <span>${item.icon}</span>
+                    <p>${item.name}</p>
+                    <div class="quantity-selector">
+                        <button onclick="decreaseQuantity(this)">-</button>
+                        <input type="number" value="1" min="1" max="99" onchange="updateQuantity(this)">
+                        <button onclick="increaseQuantity(this)">+</button>
+                    </div>
+                    <button onclick="addToShoppingList(this, '${item.name}', '${item.icon}', '${category}')">Add to List</button>
+                `;
                 itemList.appendChild(itemDiv);
             });
         }
 
-        function addToShoppingList(item, category) {
-            if (!shoppingList.some(i => i.name === item.name)) {
-                shoppingList.push({...item, category});
-                updateShoppingList();
+        function decreaseQuantity(button) {
+            const input = button.nextElementSibling;
+            if (input.value > 1) {
+                input.value = parseInt(input.value) - 1;
             }
+        }
+
+        function increaseQuantity(button) {
+            const input = button.previousElementSibling;
+            if (input.value < 99) {
+                input.value = parseInt(input.value) + 1;
+            }
+        }
+
+        function updateQuantity(input) {
+            input.value = Math.max(1, Math.min(99, parseInt(input.value) || 1));
+        }
+
+        function addToShoppingList(button, itemName, itemIcon, category) {
+            const quantityInput = button.previousElementSibling.querySelector('input');
+            const quantity = parseInt(quantityInput.value);
+            const existingItem = shoppingList.find(item => item.name === itemName);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                shoppingList.push({name: itemName, icon: itemIcon, quantity: quantity, category: category});
+            }
+            updateShoppingList();
         }
 
         function removeFromShoppingList(itemName) {
@@ -447,7 +499,7 @@
             shoppingList.forEach(item => {
                 const li = document.createElement('li');
                 li.innerHTML = `
-                    <span>${item.icon} ${item.name}</span>
+                    <span>${item.icon} ${item.name} (${item.quantity})</span>
                     <button onclick="removeFromShoppingList('${item.name}')">Remove</button>
                 `;
                 shoppingListElement.appendChild(li);
@@ -458,7 +510,7 @@
         function updatePieChart() {
             const categoryCount = {};
             shoppingList.forEach(item => {
-                categoryCount[item.category] = (categoryCount[item.category] || 0) + 1;
+                categoryCount[item.category] = (categoryCount[item.category] || 0) + item.quantity;
             });
 
             const data = {

@@ -1,5 +1,7 @@
 import Bool "mo:base/Bool";
 import Hash "mo:base/Hash";
+import List "mo:base/List";
+import Nat "mo:base/Nat";
 
 import Array "mo:base/Array";
 import Text "mo:base/Text";
@@ -10,6 +12,13 @@ actor {
   type Item = {
     name: Text;
     icon: Text;
+  };
+
+  type ShoppingListItem = {
+    name: Text;
+    icon: Text;
+    quantity: Nat;
+    category: Text;
   };
 
   type Category = {
